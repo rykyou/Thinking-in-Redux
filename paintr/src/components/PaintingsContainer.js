@@ -31,9 +31,9 @@ class PaintingsContainer extends React.Component {
     this.setState({ paintings: updatePaintings });
   };
 
-  updatePaintingInfo = (paintingId, info) => {
+  updatePaintingInfo = (info) => {
     let newPaintingsArray = this.state.paintings.map(painting => {
-      if (painting.id === paintingId) {
+      if (painting.id === info.paintingId) {
         return {
           ...painting,
           title: info.title,
