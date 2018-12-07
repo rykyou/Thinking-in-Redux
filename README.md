@@ -33,5 +33,28 @@ The steps we'll follow when we're thinking in Redux resemble our Thinking In Rea
  - PaintingDetail
  - PaintingForm
 
+```
+function updatePaintingInfo(payload){
+  return {type: "UPDATE_PAINTING_INFO", payload }
+}
+```
+```
+case "UPDATE_PAINTING_INFO":
+  return oldState.map(painting => {
+    if(painting.id === action.payload.paintingId){
+      return {
+        ...painting,
+        title: action.payload.title,
+        artist: {
+          ...painting.artist,
+          name: action.payload.name,
+          birthday: action.payload.birthday,
+          deathday: action.payload.deathday
+        }
+      }
+    }
+    return painting
+  })
+```
+
 ## mapDispatchToProps special syntax
-# Thinking-in-Redux
