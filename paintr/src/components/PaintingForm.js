@@ -15,12 +15,13 @@ class PaintingForm extends React.Component {
   onSave = e => {
     e.preventDefault();
     let info = {
+      paintingId: this.props.painting.id,
       title: this.state.title,
       name: this.state.name,
       birthday: this.state.birthday,
       deathday: this.state.deathday
     };
-    this.props.updatePaintingInfo(this.props.painting.id, info);
+    this.props.updatePaintingInfo(info);
   };
 
   render() {
