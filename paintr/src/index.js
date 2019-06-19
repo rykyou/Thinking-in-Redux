@@ -5,10 +5,14 @@ import "semantic-ui-css/semantic.min.css";
 import "./index.css";
 import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>,
   document.getElementById("root")
 );
