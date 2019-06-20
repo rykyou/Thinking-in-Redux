@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+import { updatingPaintingInfo } from "../redux/actionCreators";
 
 class PaintingForm extends React.Component {
   constructor(props) {
@@ -21,11 +24,11 @@ class PaintingForm extends React.Component {
       birthday: this.state.birthday,
       deathday: this.state.deathday
     };
-    this.props.updatePaintingInfo(info);
+    this.props.updatingPaintingInfo(info);
   };
 
   render() {
-    return (
+    return !this.props.painting ? null : (
       <div className="ui centered card">
         <div>
           <img
@@ -72,4 +75,18 @@ class PaintingForm extends React.Component {
   }
 }
 
-export default PaintingForm;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    painting: state.paintings.find(
+      painting => painting.id === ownProps.match.params.paintingId
+    )
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updatingPaintingInfo: (info) => dispatch(updatingPaintingInfo(info))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PaintingForm));

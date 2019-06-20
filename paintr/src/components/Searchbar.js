@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
+import { searching } from '../redux/actionCreators';
 
 const Searchbar = props => {
   return (
@@ -23,11 +24,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    //map a prop: that dispatches an action (within f)
-    onChange: (value) => {dispatch({type: "SEARCHING", payload: value})}
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     //mapping a function that dispatches action obj to a prop called onChange
+//     onChange: (value) => {dispatch(searching(value))}
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
+export default connect(mapStateToProps, {onChange: searching})(Searchbar);

@@ -4,8 +4,15 @@ import "../App.css";
 import Navbar from "./Navbar";
 import PaintingsContainer from "./PaintingsContainer";
 import AboutPage from "./AboutPage";
+import { fetchingPaintings } from "../redux/actionCreators";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchingPaintings();
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,4 +26,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchingPaintings: () => {dispatch(fetchingPaintings())}
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(App));
